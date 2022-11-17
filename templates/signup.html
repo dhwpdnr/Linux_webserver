@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .todowrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .todowrap .box {
+            box-shadow: 1em 0 2em rgb(0 0 0 / 20%);
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+        .todowrap .box h2 {
+            font-weight: 100;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .todowrap .box #title {
+            width: 95%;
+            border: 1px solid #222;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .box div {
+            display: flex;
+            justify-content: center;
+        }
+
+        .sm-box p {
+            margin-right: 2rem;
+        }
+
+        textarea {
+            width: 95%;
+            padding: 10px;
+            height: 6.25em;
+            resize: none;
+            margin-top: 2rem;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 120px;
+            height: 40px;
+            color: #fff;
+            background: #004fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .btn-box {
+            justify-content: end;
+            margin-top: 10px;
+        }
+
+        .listbox a {
+            color: black;
+            margin-bottom: 0.5rem;
+            font-size: 16px;
+            text-decoration-line: none;
+        }
+
+        .input_area {
+            margin: 15px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body class="todowrap">
+<form action="/signup" method="post">
+    <div class="box">
+        <h2>Sign up</h2>
+
+        <div style="flex-direction: column">
+            <input class="input_area" type="text" id="user_name" name="user_name" placeholder="이름">
+            <input class="input_area" type="text" id="user_id" name="user_id" placeholder="ID">
+            <input class="input_area" type="password" id="user_pw" name="user_pw" placeholder="PASSWORD">
+        </div>
+
+        <div class="btn-box">
+            <button type="submit" id="signup">회원가입</button>
+        </div>
+
+
+    </div>
+</form>
+
+
+<script>
+
+</script>
+
+</body>
+
+
+</html>
+
+
