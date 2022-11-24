@@ -21,7 +21,6 @@ def signup():
 
     elif (request.method == 'POST'):
 
-
         try:
             user_id = request.form["user_id"]
             user_pw = request.form["user_pw"]
@@ -35,15 +34,14 @@ def signup():
                 cur.execute("INSERT INTO user (name,user_id,user_passwd) VALUES (?,?,?)", (user_name, user_id, user_pw))
 
                 con.commit()  # db에 값 저장. (데이터베이스에 입력됨.)
-                msg = "Record successfully added"
 
         except:
             con.rollback()
-            msg = "error in insert operation"
 
         finally:  # try를 하던 except을 하던 finally는 무조건 한번 실행됨.
-            return render_template("login.html", msg=msg)  # 파이썬에 있는 msg객체를 result.html에 전달.
             con.close()  # db 닫음.
+            return redirect(url_for('login'))  # 파이썬에 있는 msg객체를 result.html에 전달.
+
 
 
 
