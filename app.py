@@ -43,6 +43,20 @@ def signup():
             return redirect(url_for('login'))  # 파이썬에 있는 msg객체를 result.html에 전달.
 
 
+@app.route('/main', methods=['GET', 'POST'])
+def main():
+    if (request.method == 'GET'):
+        # sql 로 생성된거 조회 후 리스트로 render template에 같이 뿌리기
+        return render_template('main.html')
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if (request.method == 'GET'):
+        return render_template('main.html')
+
+    if (request.method == 'POST'):
+        # db에 insert
+        return redirect(url_for('main'))
 
 
 if __name__ == '__main__':
