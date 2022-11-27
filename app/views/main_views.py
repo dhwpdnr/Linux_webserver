@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -10,3 +10,11 @@ def index():
 @bp.route('/hello')
 def hello():
     return 'Hello'
+
+@bp.route('/login')
+def login():
+    return render_template('login.html')
+
+@bp.route('/signup')
+def signup():
+    return render_template('signup.html')
