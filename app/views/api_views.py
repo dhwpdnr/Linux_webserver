@@ -20,8 +20,8 @@ def signup_api():
 def login_api():
     user_id = request.form['user_id']
     user_password = request.form['user_pw']
-    login_query = users.query.filter(users.user_id == user_id,user_password==user_password).all()
+    login_query = users.query.filter(users.user_id == user_id,users.user_password==user_password).all()
     print(len(login_query))
     if len(login_query) == 0 :
         return redirect(url_for('main.login'))
-    return redirect(url_for('main.index'))
+    return redirect(url_for('todo.main_view'))

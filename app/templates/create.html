@@ -73,6 +73,9 @@
             font-size: 16px;
             text-decoration-line: none;
         }
+        .sm-box p{
+            margin-right: 2rem;
+        }
     </style>
 
 </head>
@@ -81,12 +84,15 @@
 
 
 <div class="box">
-    <form action="/create" method="post">
+    <form action="/todo/api/create" method="post">
         <h2>Todo Create Page</h2>
-        <input type="text" id="title" placeholder="Title...">
-        <textarea id="description" placeholder="Description..."></textarea>
+        <input type="text" id="title" name="title" placeholder="Title...">
+        <textarea id="description" name="description" placeholder="Description..."></textarea>
 
-
+        <div class="sm-box">
+            <input type="checkbox" id="complete" name="complete">
+            <p>complete</p>
+        </div>
         <div class="btn-box">
             <button type="submit" id="submit">submit</button>
         </div>
