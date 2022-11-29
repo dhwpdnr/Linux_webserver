@@ -66,6 +66,23 @@
             justify-content: end;
         }
 
+        .des_wrap {
+            padding: 10px;
+            background: #d9d9d97d;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+
+        #delete-btn {
+            background: #E40F18;
+        }
+
+        .list_title {
+            background: #d9d9d97d;
+            border-radius: 5px;
+            padding: 9px;
+        }
+
         .listbox {
             display: flex;
             flex-direction: row;
@@ -86,29 +103,42 @@
 
 <body class="todowrap">
 
+
 <div class="box">
 
-    <h2>Todo List Page</h2>
 
-    {% for todo in todo_list %}
+    <a href="{% url 'todo:list' %}" style="color:#a19c9c;">back</a>
 
-    <div class="listbox">
-        <a href="/todo/detail/{{ todo.id }}">
-            {{todo.title}}
-        </a>
-    </div>
+    <h2>Todo Detail Page</h2>
 
-    {% endfor %}
+    {% if todo %}
+
+        <p class="list_title">{{ todo.title }}</p>
+        <div class="des_wrap">
+            <p>{{ todo.description }}</p>
+        </div>
 
 
-    <div class="btn-box">
-        <button type="submit" id="create-btn" onclick="location.replace('/todo/create')">create</button>
-    </div>
 
-</div>
+        <div style="display: flex; flex-direction: row;">
+            <a href="{% url 'todo:update' pk=todo.id %}">
+                <button type="submit">edit</button>
+            </a>
+
+            <div class="btn-box" style="margin-left:1rem;">
+                <button type="submit" id="delete-btn">delete</button>
+            </div>
+
+        </div>
+
+        </div>
+
+    {% endif %}
 
 </body>
 
 
 </html>
+
+
 

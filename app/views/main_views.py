@@ -6,11 +6,6 @@ bp = Blueprint('main', __name__, url_prefix='/')
 def index():
     return 'INDEX'
 
-
-@bp.route('/hello')
-def hello():
-    return 'Hello'
-
 @bp.route('/login')
 def login():
     return render_template('login.html')

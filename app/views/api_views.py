@@ -13,7 +13,6 @@ def signup_api():
     signup_query = users(user_id=user_id,user_password=user_password, user_name=user_name)
     db.session.add(signup_query)
     db.session.commit()
-    print(signup_query.id)
     return redirect(url_for('main.login'))
 
 @bp.route('/login', methods=('POST',))
@@ -21,7 +20,6 @@ def login_api():
     user_id = request.form['user_id']
     user_password = request.form['user_pw']
     login_query = users.query.filter(users.user_id == user_id,users.user_password==user_password).all()
-    print(len(login_query))
     if len(login_query) == 0 :
         return redirect(url_for('main.login'))
     return redirect(url_for('todo.main_view'))
