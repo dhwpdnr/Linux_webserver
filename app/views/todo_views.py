@@ -30,3 +30,25 @@ def create_api():
     db.session.add(create_query)
     db.session.commit()
     return redirect(url_for('todo.main_view'))
+
+@bp.route('/detail/<int:todo_id>')
+def detail(todo_id):
+    todo_detail = todo.query.get_or_404(todo_id)
+    print(todo_detail)
+    return render_template('detail.html', todo = todo_detail)
+
+
+@bp.route('/update/<int:todo_id>')
+def update(todo_id):
+    todo_detail = todo.query.get_or_404(todo_id)
+    print(todo_detail)
+    return render_template('update.html', todo = todo_detail)
+
+@bp.route('/api/update/<int:todo_id>', methods = ('POST',))
+def update_api(todo_id):
+    title = request.form.get('title', "title")
+    description = request.form.get('description', "description")
+    complete = request.form.get('complete', False)
+    todo_update = todo.query.filter(todo.id == todo_id).update({'title' : title, 'description' : description, 'complete' : complete})
+    db.session.commit()
+    return redirect(url_for('todo.main_view'))

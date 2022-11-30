@@ -66,31 +66,6 @@
             justify-content: end;
         }
 
-        .des_wrap {
-            padding: 10px;
-            background: #d9d9d97d;
-            border-radius: 5px;
-            margin-bottom: 2rem;
-        }
-
-        #delete-btn {
-            background: #E40F18;
-        }
-
-        .list_title {
-            background: #d9d9d97d;
-            border-radius: 5px;
-            padding: 9px;
-        }
-
-        .listbox {
-            display: flex;
-            flex-direction: row;
-            width: 350px;
-            border-bottom: 1px solid #456EFE;
-            margin-bottom: 1.3rem;
-        }
-
         .listbox a {
             color: black;
             margin-bottom: 0.5rem;
@@ -103,42 +78,32 @@
 
 <body class="todowrap">
 
-
 <div class="box">
+    <h2>Todo Update Page</h2>
+    <form action="/todo/api/update/{{ todo.id }}" method='post'>
+        <input type="text" id="title" name="title" placeholder="Title..." value="{{ todo.title }}">
+        <textarea id="description" name="description" placeholder="Description...">{{ todo.description }}</textarea>
 
-
-    <a href="/todo/main" style="color:#a19c9c;">back</a>
-
-    <h2>Todo Detail Page</h2>
-
-    {% if todo %}
-
-        <p class="list_title">{{ todo.title }}</p>
-        <div class="des_wrap">
-            <p>{{ todo.description }}</p>
-        </div>
-
-
-
-        <div style="display: flex; flex-direction: row;">
-            <a href="/todo/update/{{ todo.id }}">
-                <button type="submit">edit</button>
-            </a>
-
-            <div class="btn-box" style="margin-left:1rem;">
-                <button type="submit" id="delete-btn">delete</button>
-            </div>
+        <div class="sm-box">
+            {% if todo.complete == 1 %}
+                <input type="checkbox" name="complete" id="complete" checked>
+            {% else %}
+                <input type="checkbox" name="complete" id="complete">
+            {% endif %}
+            <p>complete</p>
 
         </div>
 
-        </div>
 
-    {% endif %}
+        <div class="btn-box">
+            <button type="submit" id="submit">update</button>
+        </div>
+    </form>
+
+</div>
+
 
 </body>
 
 
 </html>
-
-
-
