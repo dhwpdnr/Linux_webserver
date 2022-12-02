@@ -7,12 +7,11 @@ bp = Blueprint('todo', __name__, url_prefix='/todo')
 
 @bp.route('/main')
 def main_view():
-    todo_list = todo.query.all()
+    todo_list = todo.query.filter(todo.complete == '0').all()
     # 리스트 들어올 자리
     # render 할때 같이 뿌려줌
     return render_template('main.html', todo_list = todo_list)
 
-# @bp.route('/detail')
 
 
 @bp.route('/create')
@@ -45,7 +44,10 @@ def update(todo_id):
 def update_api(todo_id):
     title = request.form.get('title', "title")
     description = request.form.get('description', "description")
-    complete = request.form.get('complete', False)
+    complete = request.form.get('complete', 0)
+    if complete == 'on' :
+        complete = 1
+    print(complete)
     todo_update = todo.query.filter(todo.id == todo_id).update({'title' : title, 'description' : description, 'complete' : complete})
     db.session.commit()
     return redirect(url_for('todo.main_view'))
