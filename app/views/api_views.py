@@ -21,5 +21,5 @@ def login_api():
     user_password = request.form['user_pw']
     login_query = users.query.filter(users.user_id == user_id,users.user_password==user_password).all()
     if len(login_query) == 0 :
-        return redirect(url_for('main.login'))
+        return redirect(url_for('main.validate'))
     return redirect(url_for('todo.main_view'))

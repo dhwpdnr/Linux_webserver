@@ -13,7 +13,6 @@ def main_view():
     return render_template('main.html', todo_list = todo_list)
 
 
-
 @bp.route('/create')
 def create():
     return render_template('create.html')
