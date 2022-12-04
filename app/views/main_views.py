@@ -4,7 +4,7 @@ bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/')
 def index():
-    return 'INDEX'
+    return render_template('index.html')
 
 @bp.route('/login')
 def login():
