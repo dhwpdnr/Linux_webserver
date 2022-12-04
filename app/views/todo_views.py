@@ -22,7 +22,9 @@ def create():
 def create_api():
     title = request.form.get('title', "title")
     description = request.form.get('description', "description")
-    complete = request.form.get('complete', False)
+    complete = request.form.get('complete', 0)
+    if complete == 'on':
+        complete = 1
     create_query = todo(title=title, description=description, complete=complete)
     db.session.add(create_query)
     db.session.commit()
@@ -46,7 +48,6 @@ def update_api(todo_id):
     complete = request.form.get('complete', 0)
     if complete == 'on' :
         complete = 1
-    print(complete)
     todo_update = todo.query.filter(todo.id == todo_id).update({'title' : title, 'description' : description, 'complete' : complete})
     db.session.commit()
     return redirect(url_for('todo.main_view'))
@@ -57,3 +58,11 @@ def delete_api(todo_id):
     db.session.delete(todo_delete)
     db.session.commit()
     return redirect(url_for('todo.main_view'))
+
+
+@bp.route('/complete')
+def complete():
+    todo_list = todo.query.filter(todo.complete == '1').all()
+    # 리스트 들어올 자리
+    # render 할때 같이 뿌려줌
+    return render_template('complete.html', todo_list=todo_list)
