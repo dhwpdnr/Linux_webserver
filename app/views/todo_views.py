@@ -8,8 +8,6 @@ bp = Blueprint('todo', __name__, url_prefix='/todo')
 @bp.route('/main')
 def main_view():
     todo_list = todo.query.filter(todo.complete == '0').all()
-    # 리스트 들어올 자리
-    # render 할때 같이 뿌려줌
     return render_template('main.html', todo_list = todo_list)
 
 
@@ -63,6 +61,4 @@ def delete_api(todo_id):
 @bp.route('/complete')
 def complete():
     todo_list = todo.query.filter(todo.complete == '1').all()
-    # 리스트 들어올 자리
-    # render 할때 같이 뿌려줌
     return render_template('complete.html', todo_list=todo_list)
